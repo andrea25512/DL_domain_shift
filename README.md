@@ -29,7 +29,7 @@ Key components of this model include:
 
 Building upon the Memo baseline, we introduced an innovative approach by integrating SimCLR for contrastive learning, by comparing pairs of augmented images. 
 This approach involves:
-- Encoder, responsible for extracting features from the input images. It uses a pre-trained neural network (in our case - ResNet) from which the last fully connected layers (FC) are removed, keeping only the convolutional layers that extract useful features.
+- Encoder: responsible for extracting features from the input images. It uses a pre-trained neural network (in our case - ResNet) from which the last fully connected layers (FC) are removed, keeping only the convolutional layers that extract useful features.
 - Projection Head: takes these extracted features and projects them into a smaller, linear latent space. This space is used to calculate the contrastive loss. The ReLU activation function introduces non-linearity that helps to create more discriminative representations.
 - NT-Xent Loss: Projections are normalized to have unit size, and the cosine similarity between all pairs of representations is calculated, using a temperature parameter that controls the similarity scale. The loss is calculated by averaging the losses computed in both directions via cross-entropy for all positive pairs in the batch.
 - Memo Block: 64 augmentations are generated for each image using augmix. These augmented images are transformed into a batch and passed through the model to make predictions. The marginal entropy loss is calculated on the model outputs, followed by the backpropagation step and updating the model weights.
